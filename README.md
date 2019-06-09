@@ -2,6 +2,7 @@
 My personal iteration of John Conway's Game of Life.
 
 PROGRAM OPERATION:
+
     * Create a window with a grid
     * Assign attributes to the tiles in the grid:
         - 2 States: ON & OFF (highlighted Black & White, respectively)
@@ -16,6 +17,7 @@ PROGRAM OPERATION:
     * Initialize a clock: every generation, process all tiles on screen.
 
 DEVELOPMENTS:
+
     * Generations controlled by: Clock, Button, or "Ctrl+Enter"
     * Select tiles manually:
         - mouse
