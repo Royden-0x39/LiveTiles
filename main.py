@@ -1,23 +1,34 @@
 import tkinter as tk
-from objects import screen, tile
+from objects import AppConstruct, Tile
+
+def step(event):
+    for y in range(0, Sh, Ts):
+        for x in range(0, Sw, Ts):
+            tile['{}_{}'.format(x, y)].change_state(event)
 
 # toplevel widget 'root'
 root = tk.Tk()
 root.attributes("-fullscreen", True)
 
-# canvas inside 'root'
-screen = screen(root)
+# sublevel widgets defined in class 'AppConstruct'
+mainwin = AppConstruct(root)
+canvas = mainwin.canvas
 
 # obtain boundaries of the monitor screen
-scrnwdth = root.winfo_screenwidth()
-scrnhght = root.winfo_screenheight()
+Sw = root.winfo_screenwidth()
+Sh = root.winfo_screenheight()
 
 # grid of empty tiles filling the screen but no more
-tilesize = 15
-for y in range(0, scrnhght, tilesize):
-    for x in range(0, scrnwdth, tilesize):
-        tile1 = tile(screen, x, y, (x + tilesize), (y + tilesize))
-        screen.parent.update()
+Ts = 15
+tile = {}
+
+for y in range(0, Sh, Ts):
+    for x in range(0, Sw, Ts):
+        newtile = '{}_{}'.format(x, y)
+        tile[newtile] = Tile(canvas, x, y, (x + Ts), (y + Ts))
+        tile[newtile].create()
+
+root.bind('<Shift-Return>', step)
 
 # Event Mainloop
 root.mainloop()
